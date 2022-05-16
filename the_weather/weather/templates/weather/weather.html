@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What's the weather in ...?</title>
+</head>
+<body>
+    <h1>What's the weather in ...?</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.name }}
+    <button type="submit">Add City</button>
+    </form>
+    {% for city_weather in weather_data %}
+    <figure>
+        <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+    </figure>
+    <div>
+        <p>
+            <span>{{ city_weather.city }}</span>
+            <br>
+            <span>{{ city_weather.temperature }}°C</span>
+            <br> {{ city_weather.description }}
+        </p>
+    </div>
+    <h2>------------------------</h2>
+    {% endfor %}
+</body>
+</html>
